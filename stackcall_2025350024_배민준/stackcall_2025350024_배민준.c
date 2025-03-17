@@ -72,6 +72,9 @@ void print_stack()
     printf("================================\n\n");
 }
 
+void pop() {
+
+}
 
 //func 내부는 자유롭게 추가해도 괜찮으나, 아래의 구조를 바꾸지는 마세요
 void func1(int arg1, int arg2, int arg3)
