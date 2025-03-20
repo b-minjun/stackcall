@@ -72,10 +72,10 @@ void print_stack()
     printf("================================\n\n");
 }
 
-void push(char* s,int a) {
+void push(char* s, int a) {
     SP++;
-	call_stack[SP] = a;
-	strcpy(stack_info[SP], s);
+    call_stack[SP] = a;
+    strcpy(stack_info[SP], s);
 }
 
 void pop() {
@@ -95,74 +95,74 @@ void func1(int arg1, int arg2, int arg3)
     push("Return Adress", -1);
     push("func1 SFP", FP);
     FP = SP;
-	push("var_1", var_1);
+    push("var_1", var_1);
 
     // 현재 stack 출력
     print_stack();
 
-	// func2 호출
+    // func2 호출
     func2(11, 13);
 
     // func2의 스택 프레임 제거 (함수 에필로그 + pop)
     pop();
-	FP = call_stack[FP];
+    FP = call_stack[FP];
     pop();
     pop();
     pop();
     pop();
 
-	// 현재 stack 출력
+    // 현재 stack 출력
     print_stack();
 }
 
 
 void func2(int arg1, int arg2)
 {
-	// 지역 변수
+    // 지역 변수
     int var_2 = 200;
-    
-    // func2의 스택 프레임 형성 (함수 프롤로그 + push)
-	push("arg2", arg2);
-	push("arg1", arg1);
-	push("Return Adress", -1);
-	push("func2 SFP", FP);
-	FP = SP;
-	push("var_2", var_2);
 
-	// 현재 stack 출력
+    // func2의 스택 프레임 형성 (함수 프롤로그 + push)
+    push("arg2", arg2);
+    push("arg1", arg1);
+    push("Return Adress", -1);
+    push("func2 SFP", FP);
+    FP = SP;
+    push("var_2", var_2);
+
+    // 현재 stack 출력
     print_stack();
 
-	// func3 호출
+    // func3 호출
     func3(77);
 
     // func3의 스택 프레임 제거 (함수 에필로그 + pop)
-	pop();
-	pop();
-	FP = call_stack[FP];
-	pop();
+    pop();
+    pop();
+    FP = call_stack[FP];
+    pop();
     pop();
     pop();
 
-	// 현재 stack 출력
+    // 현재 stack 출력
     print_stack();
 }
 
 
 void func3(int arg1)
 {
-	// 지역 변수
+    // 지역 변수
     int var_3 = 300;
     int var_4 = 400;
 
     // func3의 스택 프레임 형성 (함수 프롤로그 + push)
-	push("arg1", arg1);
-	push("Return Adress", -1);
-	push("func3 SFP", FP);
-	FP = SP;
-	push("var_3", var_3);
-	push("var_4", var_4);
+    push("arg1", arg1);
+    push("Return Adress", -1);
+    push("func3 SFP", FP);
+    FP = SP;
+    push("var_3", var_3);
+    push("var_4", var_4);
 
-	// 현재 stack 출력
+    // 현재 stack 출력
     print_stack();
 }
 
@@ -172,15 +172,15 @@ int main()
 {
     func1(1, 2, 3);
     // func1의 스택 프레임 제거 (함수 에필로그 + pop)
-	pop();
-	FP = -1;
-	pop();
-	pop();
-	pop();
-	pop();
-	pop();
+    pop();
+    FP = -1;
+    pop();
+    pop();
+    pop();
+    pop();
+    pop();
 
-	// 현재 stack 출력
+    // 현재 stack 출력
     print_stack();
 
     // 끝
