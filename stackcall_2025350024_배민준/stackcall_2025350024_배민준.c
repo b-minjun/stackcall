@@ -37,9 +37,9 @@ char    stack_info[STACK_SIZE][20];     // Call Stack 요소에 대한 설명을 저장하�
 int SP = -1;
 int FP = -1;
 
-void func1(int arg1, int arg2, int arg3);
-void func2(int arg1, int arg2);
-void func3(int arg1);
+int func1(int arg1, int arg2, int arg3);
+int func2(int arg1, int arg2);
+int func3(int arg1);
 
 /*
     현재 call_stack 전체를 출력합니다.
@@ -82,11 +82,28 @@ void pop() {
     SP--;
 }
 
+void local_var_push(int count, int arr[], char str[][10]) {
+	SP += count;
+	for (int i = 0; i < count; i++) {
+		call_stack[SP - count +i +1] = arr[i];
+		strcpy(stack_info[SP - count + i + 1], str[i]);
+	}
+}
+
+void local_var_pop(int count) {
+	SP -= count;
+}
+
 //func 내부는 자유롭게 추가해도 괜찮으나, 아래의 구조를 바꾸지는 마세요
-void func1(int arg1, int arg2, int arg3)
+int func1(int arg1, int arg2, int arg3)
 {
     // 지역 변수
     int var_1 = 100;
+    int local_var_count = 1;
+
+    //지역 변수 배열
+    int var_arr[1] = { var_1 };
+	char name_arr[1][10] = { "var_1" };
 
     // func1의 스택 프레임 형성 (함수 프롤로그 + push)
     push("arg3", arg3);
@@ -95,16 +112,16 @@ void func1(int arg1, int arg2, int arg3)
     push("Return Adress", -1);
     push("func1 SFP", FP);
     FP = SP;
-    push("var_1", var_1);
+	local_var_push(local_var_count, var_arr, name_arr);
 
     // 현재 stack 출력
     print_stack();
 
     // func2 호출
-    func2(11, 13);
+    int return_count = func2(11, 13);
 
     // func2의 스택 프레임 제거 (함수 에필로그 + pop)
-    pop();
+	local_var_pop(return_count);
     FP = call_stack[FP];
     pop();
     pop();
@@ -113,13 +130,21 @@ void func1(int arg1, int arg2, int arg3)
 
     // 현재 stack 출력
     print_stack();
+
+	// 지역 변수 갯수 리턴
+	return local_var_count;
 }
 
 
-void func2(int arg1, int arg2)
+int func2(int arg1, int arg2)
 {
     // 지역 변수
     int var_2 = 200;
+	int local_var_count = 1;
+
+    //지역 변수 배열
+	int var_arr[1] = { var_2 };
+	char name_arr[1][10] = { "var_2" };
 
     // func2의 스택 프레임 형성 (함수 프롤로그 + push)
     push("arg2", arg2);
@@ -127,17 +152,16 @@ void func2(int arg1, int arg2)
     push("Return Adress", -1);
     push("func2 SFP", FP);
     FP = SP;
-    push("var_2", var_2);
+    local_var_push(local_var_count, var_arr, name_arr);
 
     // 현재 stack 출력
     print_stack();
 
     // func3 호출
-    func3(77);
+    int return_count = func3(77);
 
     // func3의 스택 프레임 제거 (함수 에필로그 + pop)
-    pop();
-    pop();
+	local_var_pop(return_count);
     FP = call_stack[FP];
     pop();
     pop();
@@ -145,34 +169,44 @@ void func2(int arg1, int arg2)
 
     // 현재 stack 출력
     print_stack();
+
+	// 지역 변수 갯수 리턴
+	return local_var_count;
 }
 
 
-void func3(int arg1)
+int func3(int arg1)
 {
     // 지역 변수
     int var_3 = 300;
     int var_4 = 400;
+	int local_var_count = 2;
+
+	//지역 변수 배열
+	int var_arr[2] = { var_3, var_4 };
+	char name_arr[2][10] = { "var_3", "var_4" };
 
     // func3의 스택 프레임 형성 (함수 프롤로그 + push)
     push("arg1", arg1);
     push("Return Adress", -1);
     push("func3 SFP", FP);
     FP = SP;
-    push("var_3", var_3);
-    push("var_4", var_4);
+    local_var_push(local_var_count, var_arr, name_arr);
 
     // 현재 stack 출력
     print_stack();
+
+    // 지역 변수 갯수 리턴
+	return local_var_count;
 }
 
 
 //main 함수에 관련된 stack frame은 구현하지 않아도 됩니다.
 int main()
 {
-    func1(1, 2, 3);
+    int return_count = func1(1, 2, 3);
     // func1의 스택 프레임 제거 (함수 에필로그 + pop)
-    pop();
+	local_var_pop(return_count);
     FP = -1;
     pop();
     pop();
