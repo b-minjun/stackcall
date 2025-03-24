@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stackcall_2025350024_배민준", "stackcall_2025350024_배민준\stackcall_2025350024_배민준.vcxproj", "{C55CB7DE-26ED-413B-B1E0-9E1F07FD5DA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{2A3A057F-5D22-31FD-628C-DF5EF75AEF1E}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\OneDrive\바탕 화면\Cykor\callstack_assignment\callstack_2025350024_배민준.pdf = ..\..\..\OneDrive\바탕 화면\Cykor\callstack_assignment\callstack_2025350024_배민준.pdf
+		stackcall_2025350024_배민준\memo.txt = stackcall_2025350024_배민준\memo.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
