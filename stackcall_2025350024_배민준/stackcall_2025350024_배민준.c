@@ -101,9 +101,11 @@ int func1(int arg1, int arg2, int arg3)
     int var_1 = 100;
     int local_var_count = 1;
 
-    //지역 변수 배열
-    int var_arr[1] = { var_1 };
-	char name_arr[1][10] = { "var_1" };
+    //지역 변수 배열(동적 할당)
+	int* var_arr = (int*)malloc(sizeof(int) * local_var_count);
+	var_arr[0] = var_1;
+	char (*var_name_arr)[10] = (char (*)[10])malloc(sizeof(char) * 10 * local_var_count);
+	strcpy(var_name_arr[0], "var_1");
 
     // func1의 스택 프레임 형성 (함수 프롤로그 + push)
     push("arg3", arg3);
@@ -112,7 +114,7 @@ int func1(int arg1, int arg2, int arg3)
     push("Return Adress", -1);
     push("func1 SFP", FP);
     FP = SP;
-	local_var_push(local_var_count, var_arr, name_arr);
+	local_var_push(local_var_count, var_arr, var_name_arr);
 
     // 현재 stack 출력
     print_stack();
@@ -131,6 +133,10 @@ int func1(int arg1, int arg2, int arg3)
     // 현재 stack 출력
     print_stack();
 
+	//동적 할당 메모리 해제
+	free(var_arr);
+	free(var_name_arr);
+
 	// 지역 변수 갯수 리턴
 	return local_var_count;
 }
@@ -142,9 +148,11 @@ int func2(int arg1, int arg2)
     int var_2 = 200;
 	int local_var_count = 1;
 
-    //지역 변수 배열
-	int var_arr[1] = { var_2 };
-	char name_arr[1][10] = { "var_2" };
+    //지역 변수 배열(동적 할당)
+	int* var_arr = (int*)malloc(sizeof(int) * local_var_count);
+	var_arr[0] = var_2;
+    char (*var_name_arr)[10] = (char (*)[10])malloc(sizeof(char) * 10 * local_var_count);
+	strcpy(var_name_arr[0], "var_2");
 
     // func2의 스택 프레임 형성 (함수 프롤로그 + push)
     push("arg2", arg2);
@@ -152,7 +160,7 @@ int func2(int arg1, int arg2)
     push("Return Adress", -1);
     push("func2 SFP", FP);
     FP = SP;
-    local_var_push(local_var_count, var_arr, name_arr);
+    local_var_push(local_var_count, var_arr, var_name_arr);
 
     // 현재 stack 출력
     print_stack();
@@ -170,6 +178,10 @@ int func2(int arg1, int arg2)
     // 현재 stack 출력
     print_stack();
 
+	//동적 할당 메모리 해제
+	free(var_arr);
+	free(var_name_arr);
+
 	// 지역 변수 갯수 리턴
 	return local_var_count;
 }
@@ -182,19 +194,27 @@ int func3(int arg1)
     int var_4 = 400;
 	int local_var_count = 2;
 
-	//지역 변수 배열
-	int var_arr[2] = { var_3, var_4 };
-	char name_arr[2][10] = { "var_3", "var_4" };
+	//지역 변수 배열(동적 할당)
+	int* var_arr = (int*)malloc(sizeof(int) * local_var_count);
+	var_arr[0] = var_3;
+	var_arr[1] = var_4;
+    char (*var_name_arr)[10] = (char (*)[10])malloc(sizeof(char) * 10 * local_var_count);
+	strcpy(var_name_arr[0], "var_3");
+	strcpy(var_name_arr[1], "var_4");
 
     // func3의 스택 프레임 형성 (함수 프롤로그 + push)
     push("arg1", arg1);
     push("Return Adress", -1);
     push("func3 SFP", FP);
     FP = SP;
-    local_var_push(local_var_count, var_arr, name_arr);
+    local_var_push(local_var_count, var_arr, var_name_arr);
 
     // 현재 stack 출력
     print_stack();
+
+    //동적 할당 메모리 해제
+	free(var_arr);
+	free(var_name_arr);
 
     // 지역 변수 갯수 리턴
 	return local_var_count;
