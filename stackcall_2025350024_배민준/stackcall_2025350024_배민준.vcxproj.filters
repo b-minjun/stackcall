@@ -15,8 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stackcall_2025350024_배민준.c">
+    <ClCompile Include="callstack_2025350024_배민준.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="memo.txt">
+      <Filter>소스 파일</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\callstack_2025350024_배민준.pdf">
+      <Filter>소스 파일</Filter>
+    </None>
   </ItemGroup>
 </Project>
