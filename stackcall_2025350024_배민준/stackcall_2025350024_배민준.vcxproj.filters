@@ -24,9 +24,4 @@
       <Filter>소스 파일</Filter>
     </Text>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\OneDrive\바탕 화면\Cykor\Cykor_week1\callstack_2025350024_배민준.pdf">
-      <Filter>소스 파일</Filter>
-    </None>
-  </ItemGroup>
 </Project>
