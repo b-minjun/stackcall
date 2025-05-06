@@ -133,7 +133,7 @@
     <Text Include="memo.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Downloads\callstack_2025350024_배민준.pdf" />
+    <None Include="..\..\..\..\OneDrive\바탕 화면\Cykor\Cykor_week1\callstack_2025350024_배민준.pdf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
